@@ -31,6 +31,13 @@ def dreamy(request):
     }
     return render(request,'dreamy.html',data)
 
+def chick(request):
+    content=Dress.objects.all()
+    data={
+        'result':content
+    }
+    return render(request,'chick.html',data)
+
 # USER AUTHENTICATION PART
 def signup(request):
     if request.user.is_authenticated:
@@ -74,3 +81,14 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(home)
+
+def details(request,id):
+    product=Dress.objects.get(pk=id)
+    print(product)
+    data={
+        'data':product
+    }
+    return render(request,'details.html',data)
+def about(request):
+    return render(request,'about.html')
+    
